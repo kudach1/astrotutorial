@@ -1,5 +1,5 @@
 ---
-import type { InferGetStaticParamsType, InferGetStaticPropsType, GetStaticPaths } from 'astro';
+import type { GetStaticPaths } from 'astro';
 
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import BlogPost from '../../components/BlogPost.astro';
@@ -16,9 +16,6 @@ export const getStaticPaths: GetStaticPaths = async () => {
     };
   });
 }
-
-type Props = InferGetStaticPropsType<typeof getStaticPaths>;
-
 
 const { tag } = Astro.params
 const { posts } = Astro.props  as any;
