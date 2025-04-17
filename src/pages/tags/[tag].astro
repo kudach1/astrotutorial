@@ -17,17 +17,15 @@ export const getStaticPaths: GetStaticPaths = async () => {
   });
 }
 
-
-type Params = InferGetStaticParamsType<typeof getStaticPaths>;
 type Props = InferGetStaticPropsType<typeof getStaticPaths>;
 
 
-const { tag } = Astro.params as Params;
+const { tag } = Astro.params
 const { posts } = Astro.props  as any;
 ---
 <BaseLayout pageTitle={tag}>
   <p>{tag}のタグが付いた記事</p>
   <ul>
-    {posts.map((post) => <BlogPost url={post.url} title={post.frontmatter.title}/>)}
+    {posts.map((post: { url: unknown; frontmatter: { title: unknown; }; }) => <BlogPost url={post.url} title={post.frontmatter.title}/>)}
   </ul>
 </BaseLayout>
